@@ -9,6 +9,7 @@ import {
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Splash from "./screens/Splash";
+import Home from "./screens/Home";
 
 const Stack = createStackNavigator();
 
@@ -50,6 +51,15 @@ export default function App() {
           <Stack.Screen
             name="Splash"
             component={Splash}
+            options={{
+              gestureEnabled: true,
+              animationEnabled: true,
+              gestureDirection: "horizontal",
+            }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
             options={{
               gestureEnabled: true,
               animationEnabled: true,

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
-import { auth } from "../firebase.config";
+import { auth } from "../../firebase.config";
 import { StatusBar } from "expo-status-bar";
 
 const Splash = ({ navigation }) => {

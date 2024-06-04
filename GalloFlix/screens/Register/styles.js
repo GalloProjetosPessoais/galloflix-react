@@ -70,12 +70,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 5,
     color: "white",
   },
-  linkForget: {
-    width: "100%",
-    marginTop: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   linkContainer: {
     flexDirection: "row",
     justifyContent: "center",

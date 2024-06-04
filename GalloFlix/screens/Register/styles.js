@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    height: dimensions.height,
+    height: dimensions.height + 50,
   },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.7)",

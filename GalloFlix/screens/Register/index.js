@@ -13,12 +13,17 @@ import {
 import { styles } from "./styles";
 
 const Register = ({ navigation }) => {
-  const login = () => {
-    navigation.navigate("Login");
-  };
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const register = () => {
     alert("Fazer o registro");
+  };
+
+  const login = () => {
+    navigation.navigate("Login");
   };
 
   return (
@@ -41,6 +46,8 @@ const Register = ({ navigation }) => {
                 placeholderTextColor="#ffffff"
                 style={styles.input}
                 autoCapitalize="none"
+                value={name}
+                onChangeText={setName}
               />
               <TextInput
                 placeholder="Email"
@@ -48,6 +55,8 @@ const Register = ({ navigation }) => {
                 style={styles.input}
                 autoCapitalize="none"
                 keyboardType="email-address"
+                value={email}
+                onChangeText={setEmail}
               />
               <TextInput
                 placeholder="Senha"
@@ -55,6 +64,8 @@ const Register = ({ navigation }) => {
                 style={styles.input}
                 secureTextEntry
                 autoCapitalize="none"
+                value={password}
+                onChangeText={setPassword}
               />
               <TouchableOpacity style={styles.submitButton} onPress={register}>
                 <Text style={styles.submitButtonText}>Criar</Text>

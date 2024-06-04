@@ -1,0 +1,5 @@
+cd c:\windows\system
+setx /M REACT_NATIVE_PACKAGER_HOSTNAME 192.168.1.3
+
+cd c:\windows\system32
+setx /M REACT_NATIVE_PACKAGER_HOSTNAME 192.168.1.3

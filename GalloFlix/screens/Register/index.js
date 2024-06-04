@@ -11,6 +11,9 @@ import {
   ScrollView,
 } from "react-native";
 import { styles } from "./styles";
+import { auth, db } from "../../firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 const Register = ({ navigation }) => {
   const [name, setName] = useState('')
@@ -19,7 +22,52 @@ const Register = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
 
   const register = () => {
-    alert("Fazer o registro");
+    setLoading(true);
+    if (!email || !password) {
+      Alert.alert("Problemas ao Criar Conta", "Informe todos os dados!!!!", [
+        { text: "Ok", style: "default" },
+      ]);
+      setPassword("");
+      setLoading(false);
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        Alert.alert(
+          'Usuário Cadastrado',
+          `O usuário ${name} foi cadastrado com sucesso! Faça login para continuar!`,
+          [{ text: 'Ok', style: 'default ' }]
+        );
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            name,
+            email,
+            list:[]
+          });
+          navigation.replace("Login");
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === 'auth/email-already-in-use') {
+          Alert.alert(
+            'Problemas ao Registrar',
+            `O email '${userMail}' já encontra-se em uso! Tente recuperar sua senha para continuar!`,
+            [{ text: 'Ok', style: 'default ' }]
+          );
+        } else {
+          Alert.alert(
+            'Problemas ao Registrar',
+            error.message,
+            [{ text: 'Ok', style: 'default ' }]
+          );
+        }
+      });
   };
 
   const login = () => {

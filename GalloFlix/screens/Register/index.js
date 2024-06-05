@@ -48,7 +48,7 @@ const Register = ({ navigation }) => {
           });
           navigation.replace("Login");
         } catch (e) {
-          console.error("Error adding document: ", e);
+          console.error("Erro ao gravar os dados do usuário: ", e);
         }        
       })
       .catch((error) => {
